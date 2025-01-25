@@ -21,13 +21,17 @@ services:
   msvc-products:
     image: malopezl/products:latest
     deploy:
-      replicas: 2
+      replicas: 1
     restart: always
     networks:
       - springcloud
     depends_on:
-      - mysql8
+      # - mysql8
       - eureka-server
+    environment:
+      MYSQL_URL: db-msvc-products.cnsikcecylz2.us-east-1.rds.amazonaws.com:3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: sasa1234
   msvc-items:
     container_name: msvc-items
     image: malopezl/items:latest
